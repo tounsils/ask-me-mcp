@@ -1,0 +1,43 @@
+{
+  "name": "ask-me-mcp",
+  "version": "0.1.0",
+  "description": "A persona MCP server. Ask Claude/ChatGPT/Grok about the operator's work, patterns, availability, and offer — grounded in their public résumé, projects index, and offer page. Reference implementation of the MCP-Server Harness pattern.",
+  "type": "module",
+  "author": "Ilyes Tounsi <tounsils@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tounsils/ask-me-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "anthropic",
+    "claude",
+    "harness",
+    "persona",
+    "portfolio"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/server.ts",
+    "start:stdio": "node dist/server.js",
+    "test": "vitest run",
+    "eval": "tsx eval/runner.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0",
+    "zod-to-json-schema": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@vercel/node": "^3.2.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}
