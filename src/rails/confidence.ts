@@ -48,15 +48,19 @@ export function refuse(reason: string, handoff?: string): GroundedResponse {
 /**
  * Format a GroundedResponse for MCP tool output.
  * Includes source list + disclaimers so the calling model can display them.
+ *
+ * Metadata lines are plain `label: value` (no markdown-bold wrapping) so that
+ * the eval corpus can substring-match on `Confidence: high`, `Sources: ...`,
+ * etc. The `---` rule provides enough visual separation for the calling LLM.
  */
 export function formatForMcp(r: GroundedResponse): string {
   const parts: string[] = [r.answer.trim()];
-  parts.push(`\n\n---\n**Confidence:** ${r.confidence}`);
+  parts.push(`\n---\nConfidence: ${r.confidence}`);
   if (r.sources.length > 0) {
-    parts.push(`**Sources:** ${r.sources.join(", ")}`);
+    parts.push(`Sources: ${r.sources.join(", ")}`);
   }
   if (r.disclaimers && r.disclaimers.length > 0) {
-    parts.push(`**Note:** ${r.disclaimers.join("; ")}`);
+    parts.push(`Note: ${r.disclaimers.join("; ")}`);
   }
   return parts.join("\n");
 }

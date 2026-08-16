@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx watch src/server.ts",
-    "start:stdio": "node dist/server.js",
+    "start:stdio": "node dist/src/server.js",
     "test": "vitest run",
     "eval": "tsx eval/runner.ts"
   },

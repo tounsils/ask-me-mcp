@@ -42,7 +42,7 @@ For local stdio dev:
   "mcpServers": {
     "ask-me": {
       "command": "node",
-      "args": ["/absolute/path/to/ask-me-mcp/dist/server.js"]
+      "args": ["/absolute/path/to/ask-me-mcp/dist/src/server.js"]
     }
   }
 }

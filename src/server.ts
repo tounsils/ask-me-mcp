@@ -8,6 +8,8 @@
  * Remote:    deployed as a Vercel serverless function at `api/mcp.ts`.
  */
 
+import { pathToFileURL } from "node:url";
+
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
@@ -163,7 +165,11 @@ async function main(): Promise<void> {
 }
 
 // Only run main() when invoked directly, not when imported by api/mcp.ts.
-const isDirectRun = import.meta.url === `file://${process.argv[1]?.replace(/\\/g, "/")}`;
+// Use pathToFileURL so drive-letter paths on Windows resolve to `file:///C:/...`
+// (three slashes) rather than the two-slash form we'd get by hand.
+const invokedPath = process.argv[1];
+const isDirectRun =
+  invokedPath !== undefined && import.meta.url === pathToFileURL(invokedPath).href;
 if (isDirectRun) {
   main().catch((err) => {
     process.stderr.write(`ask-me-mcp fatal: ${String(err)}\n`);

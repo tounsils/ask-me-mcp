@@ -85,7 +85,7 @@
     "retainer_slots_open": 1,
     "retainer_slots_total": 2,
     "next_open_date": "2026-09-01",
-    "notes_public": "Cap: 1 active Playbook + 1 active Retainer, OR 2 Retainers, OR 2 back-to-back Playbooks. Never 2 concurrent Playbooks."
+    "notes_public": "1 active Playbook + 1 active Retainer, OR 2 Retainers, OR 2 back-to-back Playbooks. Never 2 concurrent Playbooks."
   },
   "offer": {
     "bundled": true,
