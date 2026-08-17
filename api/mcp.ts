@@ -120,22 +120,14 @@ export default async function handler(
 
     await sendWebResponse(webResponse, res);
   } catch (err) {
-    // TEMPORARY DEBUG: return the actual error in the response so we can see
-    // what's throwing on Vercel without paid runtime logs. Revert once
-    // resolved.
+    // Log to Vercel; do not leak internal error details to the caller.
     console.error("[ask-me-mcp] handler error:", err);
-    const e = err as Error;
     if (!res.headersSent) {
       res.status(500).json({
         jsonrpc: "2.0",
         error: {
           code: -32603,
           message: "Internal server error",
-          data: {
-            name: e?.name,
-            message: e?.message,
-            stack: e?.stack?.split("\n").slice(0, 8).join("\n"),
-          },
         },
         id: null,
       });
