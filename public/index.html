@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ask-me-mcp — a persona MCP server</title>
+    <meta
+      name="description"
+      content="An MCP server that answers questions about Ilyes Tounsi's work, patterns, availability, and offer — grounded in public sources."
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --fg: #16181d;
+        --muted: #5c6270;
+        --bg: #ffffff;
+        --line: #e4e6eb;
+        --code-bg: #f5f6f8;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --fg: #e8eaed;
+          --muted: #9aa1ad;
+          --bg: #101216;
+          --line: #262a31;
+          --code-bg: #191c22;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 3rem 1.25rem 5rem;
+        background: var(--bg);
+        color: var(--fg);
+        font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+      main {
+        max-width: 44rem;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin: 0 0 0.25rem;
+        letter-spacing: -0.01em;
+      }
+      .tagline {
+        color: var(--muted);
+        margin: 0 0 2.5rem;
+      }
+      h2 {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: var(--muted);
+        margin: 2.5rem 0 0.75rem;
+        font-weight: 600;
+      }
+      pre,
+      code {
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+        font-size: 0.875rem;
+      }
+      pre {
+        background: var(--code-bg);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 0.875rem 1rem;
+        overflow-x: auto;
+      }
+      code:not(pre code) {
+        background: var(--code-bg);
+        border-radius: 4px;
+        padding: 0.1em 0.35em;
+      }
+      ul {
+        padding-left: 1.15rem;
+      }
+      li {
+        margin: 0.3rem 0;
+      }
+      a {
+        color: inherit;
+      }
+      footer {
+        margin-top: 3.5rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>ask-me-mcp</h1>
+      <p class="tagline">
+        A persona MCP server. Ask an assistant about the operator's work, patterns,
+        availability, and offer — answers are grounded in public sources, not invented.
+      </p>
+
+      <h2>Endpoint</h2>
+      <pre><code>POST /api/mcp</code></pre>
+      <p>
+        Streamable HTTP transport, stateless per request. There is no browser UI here —
+        this URL is meant to be added as a connector in an MCP client.
+      </p>
+
+      <h2>Connect it</h2>
+      <ul>
+        <li>Claude — add as a custom connector using the <code>/api/mcp</code> URL above.</li>
+        <li>ChatGPT — register the same URL through the Apps SDK.</li>
+        <li>
+          Locally over stdio — <code>npm run build</code> then
+          <code>node dist/src/server.js</code>.
+        </li>
+      </ul>
+
+      <h2>Source</h2>
+      <p>
+        <a href="https://github.com/tounsils/ask-me-mcp">github.com/tounsils/ask-me-mcp</a>
+        — MIT licensed. A reference implementation of the MCP-Server Harness pattern.
+      </p>
+
+      <footer>Ilyes Tounsi · Carlsbad, CA · remote-first</footer>
+    </main>
+  </body>
+</html>

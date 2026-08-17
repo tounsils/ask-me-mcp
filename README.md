@@ -29,7 +29,7 @@ Add to `claude_desktop_config.json` — location varies by OS; see [Claude Deskt
 {
   "mcpServers": {
     "ask-me": {
-      "url": "https://ask-me-mcp.vercel.app/api/mcp"
+      "url": "https://ask-me-mcp-xi.vercel.app/api/mcp"
     }
   }
 }
@@ -51,7 +51,7 @@ For local stdio dev:
 ### In Claude Code
 
 ```bash
-claude mcp add --scope user ask-me https://ask-me-mcp.vercel.app/api/mcp
+claude mcp add --scope user ask-me https://ask-me-mcp-xi.vercel.app/api/mcp
 ```
 
 Then in any Claude Code session:
