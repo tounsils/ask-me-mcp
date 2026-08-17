@@ -1,4 +1,17 @@
-{
+/**
+ * Grounding data — pre-extracted structured facts from the operator's public résumé,
+ * PROJECTS-INDEX.md, and offer page. See src/grounding/index.ts for accessor helpers.
+ *
+ * Exported as a `.ts` module (not a JSON file) so bundlers like ncc (used by @vercel/node)
+ * bundle it into the deployed serverless function reliably. JSON import attributes
+ * (`import data from './data.json' with { type: 'json' }`) work at runtime in Node 20+
+ * but are inconsistently supported by bundlers as of 2026.
+ *
+ * v0.2 will add a build step that regenerates this file from the source markdown.
+ * For now: edit by hand and rebuild.
+ */
+
+const data = {
   "meta": {
     "operator": "Ilyes Tounsi",
     "extracted_from": [
@@ -132,4 +145,6 @@
     "github": "https://github.com/tounsils",
     "site": "https://tounsils.github.io"
   }
-}
+};
+
+export default data;

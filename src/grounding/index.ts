@@ -1,12 +1,12 @@
 /**
  * Grounding — the harness queries here; the model never invents.
  *
- * v0 loads pre-extracted structured data from `data.json`.
- * v1 will replace this with a build step that regenerates `data.json`
- * from the source markdown files (resume, PROJECTS-INDEX, offer page).
+ * v0 loads pre-extracted structured data from `data.ts` (a typed module).
+ * v0.2 will replace this with a build step that regenerates `data.ts` from
+ * the source markdown files (resume, PROJECTS-INDEX, offer page).
  */
 
-import data from "./data.json" with { type: "json" };
+import data from "./data.js";
 
 export type Engagement = {
   slug: string;
@@ -46,7 +46,9 @@ export type OfferProduct = {
 
 export type Grounding = typeof data;
 
-export const grounding: Grounding = data;
+// The `as const` in data.ts widens the readonly types; strip them at the
+// grounding boundary so tools can work with normal mutable-shaped types.
+export const grounding = data as unknown as Grounding;
 
 /**
  * Cheap keyword search over the reusable-patterns catalog.

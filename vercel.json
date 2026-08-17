@@ -1,10 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build",
-  "framework": null,
   "functions": {
     "api/mcp.ts": {
-      "runtime": "@vercel/node@3.2.0",
       "maxDuration": 30
     }
   },

@@ -1,0 +1,15 @@
+# Local dev + test artifacts — @vercel/node bundles api/mcp.ts + transitive
+# imports on its own; nothing else needs to be uploaded.
+
+dist
+eval
+node_modules
+coverage
+.nyc_output
+scratchpad
+tmp
+
+# Docs / repo hygiene — not needed at runtime
+CHANGELOG.md
+CONTRIBUTING.md
+.github
