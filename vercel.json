@@ -2,7 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
     "api/mcp.ts": {
+      "runtime": "@vercel/node@5.10.1",
       "maxDuration": 30
+    },
+    "api/health.ts": {
+      "runtime": "@vercel/node@5.10.1",
+      "maxDuration": 10
     }
   },
   "headers": [
