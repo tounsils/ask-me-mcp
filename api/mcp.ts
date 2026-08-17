@@ -19,6 +19,48 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { createServer } from "../src/server.js";
+import { verifyAccessToken } from "../src/oauth/codeGrant.js";
+import { endpointUrl, issuerUrl, paths } from "../src/oauth/config.js";
+
+/**
+ * Enforce OAuth Bearer. Returns null on success (auth passes; continue).
+ * On failure, writes a 401 with the RFC 9728 `WWW-Authenticate` challenge
+ * that tells clients where to discover the OAuth flow, and returns "sent"
+ * so the caller stops processing.
+ */
+async function requireBearer(
+  req: VercelRequest,
+  res: VercelResponse,
+): Promise<"sent" | null> {
+  const header = req.headers["authorization"];
+  const raw = Array.isArray(header) ? header[0] : header;
+  const token = raw?.startsWith("Bearer ") ? raw.slice(7).trim() : "";
+
+  if (token) {
+    try {
+      await verifyAccessToken(token);
+      return null;
+    } catch {
+      // fall through to 401
+    }
+  }
+
+  const resourceMetadataUrl = endpointUrl(paths.wellKnownProtectedResource);
+  const challenge =
+    `Bearer realm="ask-me-mcp", ` +
+    `resource_metadata="${resourceMetadataUrl}", ` +
+    `error="invalid_token"`;
+  res.setHeader("WWW-Authenticate", challenge);
+  res.status(401).json({
+    error: "invalid_token",
+    error_description:
+      "Access token missing or invalid. Discover the OAuth flow at " +
+      resourceMetadataUrl,
+    resource_metadata: resourceMetadataUrl,
+    authorization_server: issuerUrl,
+  });
+  return "sent";
+}
 
 /**
  * Turn a Vercel Node request into a Web-standard `Request`. Vercel already
@@ -104,6 +146,12 @@ export default async function handler(
     });
     return;
   }
+
+  // OAuth 2.1 Bearer authentication (per MCP Streamable HTTP spec).
+  // Unauthenticated requests get 401 + WWW-Authenticate challenge pointing at
+  // the RFC 9728 protected-resource metadata for auto-discovery of the flow.
+  const authResult = await requireBearer(req, res);
+  if (authResult === "sent") return;
 
   try {
     const server = createServer();

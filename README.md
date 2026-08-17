@@ -21,9 +21,15 @@ Every response ships with a confidence label and a source citation. The server n
 
 ## Install (as a user)
 
-### In Claude Desktop
+The remote endpoint speaks MCP Streamable HTTP + OAuth 2.1. Three ways to connect:
 
-Add to `claude_desktop_config.json` — location varies by OS; see [Claude Desktop config docs](https://modelcontextprotocol.io/quickstart/user). For the remote (Vercel-hosted) endpoint:
+### 1. Claude Desktop — connector directory ("Connect" button)
+
+Add via the Claude Desktop UI: **Settings → Connectors → Add custom connector → URL: `https://ask-me-mcp-xi.vercel.app/api/mcp`**. Click **Connect**. The desktop client discovers OAuth metadata, registers as a client, exchanges tokens, and mounts the tools. No manual config.
+
+### 2. Claude Desktop / Claude Code — config file (skip OAuth)
+
+Add to `claude_desktop_config.json` — location varies by OS; see [Claude Desktop config docs](https://modelcontextprotocol.io/quickstart/user):
 
 ```jsonc
 {
@@ -35,7 +41,15 @@ Add to `claude_desktop_config.json` — location varies by OS; see [Claude Deskt
 }
 ```
 
-For local stdio dev:
+### 3. Claude Code CLI
+
+```bash
+claude mcp add --scope user ask-me https://ask-me-mcp-xi.vercel.app/api/mcp
+```
+
+### Local stdio (development)
+
+For local stdio dev (no HTTP, no OAuth — auth doesn't apply to stdio):
 
 ```jsonc
 {
@@ -46,12 +60,6 @@ For local stdio dev:
     }
   }
 }
-```
-
-### In Claude Code
-
-```bash
-claude mcp add --scope user ask-me https://ask-me-mcp-xi.vercel.app/api/mcp
 ```
 
 Then in any Claude Code session:
@@ -94,18 +102,25 @@ Outputs to `dist/`.
 ### Deploy to Vercel
 
 ```bash
-vercel deploy
+# Set the JWT signing secret (one-time; required for OAuth).
+vercel env add MCP_JWT_SECRET production
+# Paste a long random string. Generate one: `openssl rand -base64 48`.
+
+vercel deploy --prod
 ```
 
-The `api/mcp.ts` handler serves the [Streamable HTTP transport](https://modelcontextprotocol.io/docs/concepts/transports) — the format Anthropic's connector directory and ChatGPT's Apps SDK both use.
+The `api/mcp.ts` handler serves the [Streamable HTTP transport](https://modelcontextprotocol.io/docs/concepts/transports) with OAuth 2.1 protection — the format Claude's connector directory and ChatGPT's Apps SDK both use. See [`docs/oauth-flow.md`](docs/oauth-flow.md) for the full architecture.
 
 ### Run the eval corpus
 
 ```bash
-npm run eval
+npm run eval           # 15 tool cases against handlers directly (no HTTP)
+npm run eval:oauth     # 6-step end-to-end OAuth flow (needs MCP_JWT_SECRET)
 ```
 
-Replays the eval corpus at `eval/corpus.json` against the deployed (or local) MCP server. Fails the build if fewer than a threshold percentage of expected answers match. **Pass or nothing ships.**
+The tool corpus fails the build if fewer than a threshold percentage of expected answers match. **Pass or nothing ships.**
+
+The OAuth flow test exercises register → authorize → token → protected /api/mcp → 401 challenge → refresh — all in-process against Vercel-shaped mock req/res objects.
 
 ## Repository layout
 
@@ -125,11 +140,25 @@ ask-me-mcp/
 │   │   └── index.ts            # loaders + search helpers
 │   └── rails/
 │       └── confidence.ts       # confidence + source-citation wrapper; refusal helper
+│   └── oauth/                  # OAuth 2.1 + PKCE + anonymous DCR
+│       ├── config.ts           # issuer, scopes, TTLs, endpoint paths
+│       ├── jwt.ts              # HS256 sign/verify (via `jose`)
+│       ├── clientRegistry.ts   # client_id = signed JWT (no DB)
+│       └── codeGrant.ts        # auth code + access/refresh token + PKCE S256
 ├── api/
-│   └── mcp.ts                  # Vercel serverless entry (Streamable HTTP)
+│   ├── mcp.ts                          # Vercel serverless entry (Streamable HTTP + Bearer auth)
+│   ├── health.ts                       # diagnostic (unauthenticated)
+│   ├── register.ts                     # RFC 7591 DCR
+│   ├── authorize.ts                    # authorization endpoint (auto-approves)
+│   ├── token.ts                        # token exchange with PKCE
+│   ├── oauth-protected-resource.ts     # RFC 9728 metadata
+│   └── oauth-authorization-server.ts   # RFC 8414 metadata
 ├── eval/
-│   ├── corpus.json             # ~30 questions + expected answers
-│   └── runner.ts               # replays corpus, prints pass/fail (coming soon)
+│   ├── corpus.json             # 15 tool cases + expected answers
+│   ├── runner.ts               # replays tool corpus, threshold-gated
+│   └── oauth-flow.ts           # 6-step OAuth end-to-end test
+├── docs/
+│   └── oauth-flow.md           # OAuth architecture + how to swap for real user identity
 ├── package.json
 ├── tsconfig.json
 ├── vercel.json

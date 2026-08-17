@@ -8,8 +8,38 @@
     "api/health.ts": {
       "runtime": "@vercel/node@5.10.1",
       "maxDuration": 10
+    },
+    "api/register.ts": {
+      "runtime": "@vercel/node@5.10.1",
+      "maxDuration": 10
+    },
+    "api/authorize.ts": {
+      "runtime": "@vercel/node@5.10.1",
+      "maxDuration": 10
+    },
+    "api/token.ts": {
+      "runtime": "@vercel/node@5.10.1",
+      "maxDuration": 10
+    },
+    "api/oauth-protected-resource.ts": {
+      "runtime": "@vercel/node@5.10.1",
+      "maxDuration": 10
+    },
+    "api/oauth-authorization-server.ts": {
+      "runtime": "@vercel/node@5.10.1",
+      "maxDuration": 10
     }
   },
+  "rewrites": [
+    {
+      "source": "/.well-known/oauth-protected-resource",
+      "destination": "/api/oauth-protected-resource"
+    },
+    {
+      "source": "/.well-known/oauth-authorization-server",
+      "destination": "/api/oauth-authorization-server"
+    }
+  ],
   "headers": [
     {
       "source": "/api/mcp",
@@ -17,7 +47,7 @@
         { "key": "Access-Control-Allow-Origin", "value": "*" },
         { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
         { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization, Mcp-Session-Id" },
-        { "key": "Access-Control-Expose-Headers", "value": "Mcp-Session-Id" }
+        { "key": "Access-Control-Expose-Headers", "value": "Mcp-Session-Id, WWW-Authenticate" }
       ]
     }
   ]
