@@ -9,7 +9,7 @@
       "id": "focus-01",
       "tool": "get_current_focus",
       "input": {},
-      "expected_substrings": ["NXT Robotics", "AIMIA", "Hydrostasis", "digitalqrcard.com", "Realtors"],
+      "expected_substrings": ["NXT Robotics", "AIMIA", "Hydrostasis", "digitalqrcard.com"],
       "must_include_metadata": ["Confidence:", "Sources:"]
     },
     {

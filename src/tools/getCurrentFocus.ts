@@ -18,7 +18,7 @@ export function getCurrentFocus(_input: GetCurrentFocusInput): string {
 
   const wedge = grounding.current_focus.active_vertical_wedge;
   const wedgeLine =
-    `\n**Active vertical wedge (started ${wedge.started}):** ${wedge.product} · anchor pilot: ${wedge.anchor_pilot} · workspace: \`${wedge.workspace}\`.`;
+    `\n**Active vertical wedge:** ${wedge.product} · workspace: \`${wedge.workspace}\`.\n\n${wedge.status}`;
 
   const headline = grounding.current_focus.primary_headline;
 

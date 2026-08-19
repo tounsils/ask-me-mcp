@@ -30,10 +30,9 @@ const data = {
       { "role": "Founder & operator", "company": "digitalqrcard.com", "arrangement": "Solo founder", "since": "Dec 2024" }
     ],
     "active_vertical_wedge": {
-      "product": "Digital QR Card for Realtors",
-      "started": "2026-08-14",
-      "anchor_pilot": "Jake Rose (realtor)",
-      "workspace": "P-DQC-Realtors"
+      "product": "Digital QR Card — vertical undecided",
+      "status": "The realtor wedge scoped 2026-08-14 was killed 2026-08-19 after the anchor pilot turned out to be neither a realtor nor a customer. Vertical positioning is being validated against actual organisation signups (rehab, trades, law all signed up week of 18-Aug) rather than a hypothesis.",
+      "workspace": "P-DQC-Realtors (preserved with DEAD notice)"
     },
     "primary_headline": "20+ years shipping production systems; last 3 years layering AI/ML on top — LLM apps, RAG pipelines, MCP-based agent orchestration, voice, semantic search, human-in-the-loop workflows."
   },
@@ -74,7 +73,7 @@ const data = {
       "role": "Solo founder & operator",
       "since": "Dec 2024",
       "site": "https://www.digitalqrcard.com",
-      "product": "B2C customizable QR-based digital business cards with built-in lead capture. Currently pivoting a realtor-vertical wedge (MLS-aware profile, brokerage team plans, open-house lead capture)."
+      "product": "B2C customizable QR-based digital business cards with built-in lead capture. Vertical positioning is currently undecided — being validated against real organisation-level demand signals (three organisation signups the week of 18-Aug from rehab, trades, and law sectors) rather than a pre-selected wedge."
     }
   ],
   "reusable_patterns": [
