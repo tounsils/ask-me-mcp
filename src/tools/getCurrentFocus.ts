@@ -35,7 +35,7 @@ export function getCurrentFocus(_input: GetCurrentFocusInput): string {
       "high",
       [
         "tounsils.github.io/ResumeIlyes.pdf",
-        "C:\\dev\\PROJECTS-INDEX.md",
+        "tounsils.github.io/resume.html",
       ],
     ),
   );

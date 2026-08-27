@@ -79,7 +79,7 @@ export function getEngagementSummary(input: GetEngagementSummaryInput): string {
       "high",
       [
         `tounsils.github.io/ResumeIlyes.pdf#${eng.slug}`,
-        "C:\\dev\\PROJECTS-INDEX.md",
+        "tounsils.github.io/resume.html",
       ],
       disclaimers.length > 0 ? disclaimers : undefined,
     ),

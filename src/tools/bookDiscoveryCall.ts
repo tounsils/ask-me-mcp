@@ -54,8 +54,8 @@ export function bookDiscoveryCall(input: BookDiscoveryCallInput): string {
       parts.join("\n"),
       "high",
       [
-        "C:\\dev\\P-BB-FractionalCTO\\offer-page.md",
-        "C:\\dev\\P-Ideation\\bb-fractional-cto.md § Discovery-call script",
+        "tounsils.github.io/fractional/",
+        "tounsils.github.io/fractional/ § how to book",
       ],
     ),
   );

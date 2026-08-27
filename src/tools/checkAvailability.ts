@@ -28,8 +28,8 @@ export function checkAvailability(_input: CheckAvailabilityInput): string {
       parts.join("\n"),
       "high",
       [
-        "C:\\dev\\P-BB-FractionalCTO\\offer-page.md",
-        "C:\\dev\\P-Ideation\\bb-fractional-cto.md § Delivery-capacity math",
+        "tounsils.github.io/fractional/",
+        "tounsils.github.io/fractional/ § capacity caps",
       ],
     ),
   );

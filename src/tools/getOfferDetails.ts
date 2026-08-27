@@ -17,17 +17,18 @@ export const getOfferDetailsInputSchema = z
 
 export type GetOfferDetailsInput = z.infer<typeof getOfferDetailsInputSchema>;
 
+// Figures are deliberately not in the grounding data and must not be added.
+// Policy from 2026-08-27: pricing is given on direct request only, never
+// published. This server is public and anyone can register a client against it,
+// so anything it returns is public. Describe the basis, not the number.
 function formatPrice(p: (typeof grounding.offer.products)[number]): string {
-  if (p.price_usd) return `$${p.price_usd.toLocaleString()} fixed`;
-  if (p.price_usd_per_month) return `$${p.price_usd_per_month.toLocaleString()} / month`;
-  if (p.price_usd_per_session) return `$${p.price_usd_per_session.toLocaleString()} / session`;
-  return "See operator for pricing.";
+  return p.pricing_basis ?? "Given on request. Ask and you get a straight answer.";
 }
 
 function formatProduct(p: (typeof grounding.offer.products)[number]): string {
   const parts: string[] = [
     `### ${p.name}`,
-    `**Price:** ${formatPrice(p)} · **Term:** ${p.term} · **Cap:** ${p.cap}`,
+    `**Pricing:** ${formatPrice(p)} · **Term:** ${p.term} · **Cap:** ${p.cap}`,
   ];
   if (p.refund_clause) parts.push(`**Refund clause:** ${p.refund_clause}`);
   if (p.summary) parts.push("", p.summary);
@@ -59,7 +60,7 @@ export function getOfferDetails(input: GetOfferDetailsInput): string {
       grounded(
         parts.join("\n"),
         "high",
-        ["C:\\dev\\P-BB-FractionalCTO\\offer-page.md"],
+        ["tounsils.github.io/fractional/"],
       ),
     );
   }
@@ -77,7 +78,7 @@ export function getOfferDetails(input: GetOfferDetailsInput): string {
     grounded(
       formatProduct(product),
       "high",
-      ["C:\\dev\\P-BB-FractionalCTO\\offer-page.md"],
+      ["tounsils.github.io/fractional/"],
     ),
   );
 }

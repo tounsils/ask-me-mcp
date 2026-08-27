@@ -9,100 +9,264 @@
       "id": "focus-01",
       "tool": "get_current_focus",
       "input": {},
-      "expected_substrings": ["NXT Robotics", "AIMIA", "Hydrostasis", "digitalqrcard.com"],
-      "must_include_metadata": ["Confidence:", "Sources:"]
+      "expected_substrings": [
+        "NXT Robotics",
+        "AIMIA",
+        "Hydrostasis",
+        "digitalqrcard.com"
+      ],
+      "must_include_metadata": [
+        "Confidence:",
+        "Sources:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "engagement-nxt",
       "tool": "get_engagement_summary",
-      "input": { "slug": "nxt-robotics" },
-      "expected_substrings": ["RobotogoAI", "Snapdragon Stadium", "Amazon parking"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "slug": "nxt-robotics"
+      },
+      "expected_substrings": [
+        "RobotogoAI",
+        "Snapdragon Stadium",
+        "Amazon parking"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "engagement-aimia",
       "tool": "get_engagement_summary",
-      "input": { "slug": "aimia" },
-      "expected_substrings": ["career", "assessment", "AI Proficiency"],
-      "must_not_include": ["harness pivot", "Anthropic partnership", "Gates Foundation"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "slug": "aimia"
+      },
+      "expected_substrings": [
+        "career",
+        "assessment",
+        "AI Proficiency"
+      ],
+      "must_not_include": [
+        "harness pivot",
+        "Anthropic partnership",
+        "Gates Foundation",
+        "C:\\\\dev",
+        "C:/dev"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ]
     },
     {
       "id": "engagement-hydrostasis",
       "tool": "get_engagement_summary",
-      "input": { "slug": "hydrostasis" },
-      "expected_substrings": ["Retool", "Test", "Prod", "promotion"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "slug": "hydrostasis"
+      },
+      "expected_substrings": [
+        "Retool",
+        "Test",
+        "Prod",
+        "promotion"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "engagement-dqc",
       "tool": "get_engagement_summary",
-      "input": { "slug": "digitalqrcard" },
-      "expected_substrings": ["QR", "digital business card", "lead capture"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "slug": "digitalqrcard"
+      },
+      "expected_substrings": [
+        "QR",
+        "digital business card",
+        "lead capture"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "engagement-unknown",
       "tool": "get_engagement_summary",
-      "input": { "slug": "openai" },
-      "must_include_metadata": ["Confidence: unknown"],
-      "notes": "Should refuse — no engagement with slug 'openai'."
+      "input": {
+        "slug": "openai"
+      },
+      "must_include_metadata": [
+        "Confidence: unknown"
+      ],
+      "notes": "Should refuse — no engagement with slug 'openai'.",
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "patterns-mcp",
       "tool": "search_reusable_patterns",
-      "input": { "query": "mcp" },
-      "expected_substrings": ["Harness"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "query": "mcp"
+      },
+      "expected_substrings": [
+        "Harness"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "patterns-encryption",
       "tool": "search_reusable_patterns",
-      "input": { "query": "encryption" },
-      "expected_substrings": ["AES-256-GCM", "HMAC"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "query": "encryption"
+      },
+      "expected_substrings": [
+        "AES-256-GCM",
+        "HMAC"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "patterns-retool",
       "tool": "search_reusable_patterns",
-      "input": { "query": "retool" },
-      "expected_substrings": ["promote.js"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "query": "retool"
+      },
+      "expected_substrings": [
+        "promote.js"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "patterns-none",
       "tool": "search_reusable_patterns",
-      "input": { "query": "kubernetes" },
-      "must_include_metadata": ["Confidence: unknown"],
-      "notes": "Should refuse — no pattern matches 'kubernetes'."
+      "input": {
+        "query": "kubernetes"
+      },
+      "must_include_metadata": [
+        "Confidence: unknown"
+      ],
+      "notes": "Should refuse — no pattern matches 'kubernetes'.",
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "availability-01",
       "tool": "check_availability",
       "input": {},
-      "expected_substrings": ["Playbook", "Retainer", "slot"],
-      "must_include_metadata": ["Confidence:"]
+      "expected_substrings": [
+        "Playbook",
+        "Retainer",
+        "slot"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "offer-all",
       "tool": "get_offer_details",
-      "input": { "product": "all" },
-      "expected_substrings": ["MCP-Server Product Playbook", "Fractional CTO Retainer", "12,000", "3,500"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "product": "all"
+      },
+      "expected_substrings": [
+        "MCP-Server Product Playbook",
+        "Fractional CTO Retainer",
+        "on request"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "12,000",
+        "3,500",
+        "$12",
+        "$3,5",
+        "$500",
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "offer-playbook",
       "tool": "get_offer_details",
-      "input": { "product": "mcp-server-playbook" },
-      "expected_substrings": ["12,000", "6 weeks", "50% refund"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "product": "mcp-server-playbook"
+      },
+      "expected_substrings": [
+        "6 weeks",
+        "50% refund",
+        "Fixed fee"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "12,000",
+        "$12",
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "offer-retainer",
       "tool": "get_offer_details",
-      "input": { "product": "fractional-cto-retainer" },
-      "expected_substrings": ["3,500", "Month-to-month"],
-      "must_include_metadata": ["Confidence:"]
+      "input": {
+        "product": "fractional-cto-retainer"
+      },
+      "expected_substrings": [
+        "Month-to-month",
+        "monthly retainer"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "3,500",
+        "$3,5",
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     },
     {
       "id": "book-01",
@@ -110,8 +274,18 @@
       "input": {
         "prospect_context": "We're a Series A voice-AI startup shipping in healthcare. Considering pivoting to MCP-first distribution. Want to discuss architecture and whether the Playbook fits."
       },
-      "expected_substrings": ["tounsils@gmail.com", "does not auto-book", "will NOT"],
-      "must_include_metadata": ["Confidence:"]
+      "expected_substrings": [
+        "tounsils@gmail.com",
+        "does not auto-book",
+        "will NOT"
+      ],
+      "must_include_metadata": [
+        "Confidence:"
+      ],
+      "must_not_include": [
+        "C:\\\\dev",
+        "C:/dev"
+      ]
     }
   ]
 }

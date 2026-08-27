@@ -16,8 +16,8 @@ const data = {
     "operator": "Ilyes Tounsi",
     "extracted_from": [
       "tounsils.github.io/ResumeIlyes.pdf",
-      "C:\\dev\\PROJECTS-INDEX.md",
-      "C:\\dev\\P-BB-FractionalCTO\\offer-page.md"
+      "tounsils.github.io/resume.html",
+      "tounsils.github.io/fractional/"
     ],
     "extracted_at": "2026-08-15",
     "notes": "Pre-extracted structured grounding for v0. Later versions replace this with a build step that regenerates from the source markdown files."
@@ -105,7 +105,7 @@ const data = {
       {
         "slug": "mcp-server-playbook",
         "name": "MCP-Server Product Playbook",
-        "price_usd": 12000,
+        "pricing_basis": "Fixed fee for the whole engagement, not hourly and not estimated. Figure given on request.",
         "term": "6 weeks",
         "refund_clause": "50% refund if not shipped by end of week 6",
         "cap": "1 active engagement at a time",
@@ -115,7 +115,7 @@ const data = {
       {
         "slug": "fractional-cto-retainer",
         "name": "Fractional CTO Retainer",
-        "price_usd_per_month": 3500,
+        "pricing_basis": "Flat monthly retainer, cancel anytime. Figure given on request.",
         "term": "Month-to-month",
         "cap": "2 active retainer clients at a time; combined cap 1 Playbook + 1 Retainer, OR 2 Retainers, OR 2 back-to-back Playbooks",
         "summary": "Ongoing architecture-adult calls after the Playbook, or for founders who found me on the retainer track directly.",
@@ -124,7 +124,7 @@ const data = {
       {
         "slug": "session-addon",
         "name": "Investor / all-hands session (add-on)",
-        "price_usd_per_session": 500,
+        "pricing_basis": "Per session. Figure given on request.",
         "term": "Per session",
         "cap": "—"
       }

@@ -59,7 +59,7 @@ export function searchReusablePatterns(
     grounded(
       parts.join("\n").trim(),
       "high",
-      ["C:\\dev\\PROJECTS-INDEX.md § Reusable patterns"],
+      ["tounsils.github.io/fractional/ § reusable-patterns library"],
     ),
   );
 }
