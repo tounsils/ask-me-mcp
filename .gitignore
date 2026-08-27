@@ -31,3 +31,9 @@ coverage/
 # Local scratch
 scratchpad/
 tmp/
+
+.vercel
+
+# Publisher CLI binary, downloaded not committed
+mcp-publisher.exe
+mcp-publisher.tar.gz
