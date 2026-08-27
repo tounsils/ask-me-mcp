@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.tounsils/ask-me-mcp",
+  "title": "Ask Me",
+  "description": "Ask about an operator's work, reusable patterns, availability and offer. Typed tools, eval-gated.",
+  "version": "0.1.0",
+  "repository": {
+    "url": "https://github.com/tounsils/ask-me-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://ask-me-mcp-xi.vercel.app/api/mcp"
+    }
+  ],
+  "websiteUrl": "https://tounsils.github.io/fractional/"
+}
