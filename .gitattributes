@@ -1,0 +1,34 @@
+# Normalize line endings in the repository to LF.
+# Without this, core.autocrlf=true on a Windows checkout gives every file CRLF on
+# disk while Prettier's endOfLine default is "lf", so `format:check` flags the whole
+# tree and stops being a signal. Phase 1 audit, 2026-10-20.
+* text=auto eol=lf
+
+# Scripts that are executed by their interpreter, not the shell that wrote them.
+*.sh   text eol=lf
+*.bash text eol=lf
+
+# Windows-only launchers genuinely need CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary: never diffed, never normalized.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.avif binary
+*.pdf  binary
+*.woff binary
+*.woff2 binary
+*.ttf  binary
+*.otf  binary
+*.eot  binary
+*.mp3  binary
+*.mp4  binary
+*.wav  binary
+*.zip  binary
+*.gz   binary
+*.pmtiles binary
